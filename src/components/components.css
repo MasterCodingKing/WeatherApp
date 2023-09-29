@@ -1,0 +1,106 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-image: url('idotravel.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+.main{
+    aspect-ratio: 20/10;
+    width: 100%;
+    height: 100%;
+}
+
+.sec_main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.sec_main input{
+    background-color: rgba(0, 0, 0, 0.315);
+   outline: none;
+   color: rgb(192, 170, 170);
+}
+.sec_main input:focus{
+    background-color: rgba(0, 0, 0, 0.315);
+    outline: none;
+}
+.sec_main h4{
+    color: rgb(39, 35, 35);
+    font-size: 40px;
+    text-decoration: underline;
+    
+}
+.details{
+    background-color: rgba(3, 3, 3, 0.582);
+    border-radius: 20px;
+    padding: 20px;
+    height: 100%;
+    border: 2px solid rgb(51, 45, 45);
+    box-shadow: 0px 0px 40px rgba(43, 39, 39, 0.671), 5px 4px 40px rgb(73, 59, 59);
+}
+.cloud{
+    font-size: 5rem;
+}
+.second-items p:nth-child(2){
+    font-size: 5rem;
+}
+.wind{
+    background: rgba(185, 160, 160, 0.171);
+-webkit-backdrop-filter: blur(1px);
+backdrop-filter: blur(1px);
+border-radius: 5px;
+height: 13rem;
+width: 10rem;
+display: flex;
+justify-content: center;
+align-items: start;
+flex-direction: column;
+padding: 1rem;
+line-height: 15px;
+
+}
+.coor{
+    height: 10rem;
+    width: 90%;
+    background: rgba(185, 160, 160, 0.171);
+-webkit-backdrop-filter: blur(1px);
+backdrop-filter: blur(1px);
+border-radius: 5px;
+font-size: 15px;
+line-height: 19px;
+}
+.time{
+    background:  rgba(185, 160, 160, 0.171);
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    border-radius: 5px;
+    height: 10rem;
+}
+.temp{
+    line-height: 17px;
+}
+.zone p{
+    font-size: 4rem;
+}
+.below-items{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search{
+    height: 2rem;
+    width: 5rem;
+    border-radius: 5px;
+    background: transparent;
+    color: rgb(58, 51, 51);
+}
+.search:active{
+    border: 1px solid white;
+    color: white;
+}

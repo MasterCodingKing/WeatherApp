@@ -1,0 +1,214 @@
+------TOGGLE------
+
+import { useState,useEffect } from 'react';
+
+function App() {
+  const [dark, setdark] = useState(false);
+  const Changing= () =>{
+    setdark(dark => !dark)
+  }
+return(
+  <div className={dark ? 'darkmode' : 'lightmode'} >
+    <h2>{dark ? 'DarkMode':'LightMode'}</h2>
+      <input type="checkbox" id='check' onClick={Changing}/>
+      <label for="check" className='slider'>
+       
+      </label>
+  </div>
+)
+}
+
+export default App;
+
+----CSS---
+
+.darkmode{
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.9s;
+  color: white;
+}
+.lightmode{
+  background-color: white;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: 0.9s;
+}
+.slider{
+  width: 100px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: rgb(68, 55, 55);
+  position: relative;
+ 
+}
+#check{
+  display: none;
+}
+
+.slider::before{
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: azure;
+  margin: 5px;
+  transition: 0.9s;
+}
+input:checked + .slider{
+  background-color: rgb(233, 215, 215);
+}
+input:checked + .slider::before{
+  background-color: rgb(22, 20, 20);
+  transform: translateX(50px);
+}
+
+----Calculator----
+import { React, useRef, useState } from 'react';
+import './App.css';
+
+const App = () =>{
+  const [number, setnum] = useState('');
+  
+  const Number = (num) =>{
+    setnum(numbers => numbers + num )
+  }
+  const ClearSolved = () => {
+    setnum('')
+  }
+  const totalSolved = () => {
+    try {
+      setnum(eval(number));
+      throw new Error('Invalid Value')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const InputChange  = () =>  {
+    console.log('change')
+  }
+  
+ return (
+   <>
+     <input type="text"  value={number} onChange={InputChange}/>
+     <button onClick={() => Number(1)}>1</button>
+     <button onClick={() => Number(2)}>2</button>
+     <button onClick={() => Number(3)}>3</button>
+     <button onClick={() => Number(4)}>4</button>
+     <button onClick={() => Number(5)}>5</button>
+     <button onClick={() => Number(6)}>6</button>
+     <button onClick={() => Number(7)}>7</button>
+     <button onClick={() => Number(8)}>8</button>
+     <button onClick={() => Number(9)}>9</button>
+     <button onClick={() => Number(0)}>0</button>
+     <button onClick={() => Number('+')}>+</button>
+     <button onClick={() => Number('-')}>-</button>
+     <button onClick={() => Number('*')}>*</button>
+     <button onClick={() => Number('/')}>/</button>
+     <button onClick={ totalSolved}>=</button>
+     <button onClick={ ClearSolved}>C</button>
+   </>
+ );
+}
+export default App
+
+-----TicTakToe-----
+import { React, useEffect, useState } from "react";
+import "./components.css";
+const TickTac = () => {
+  const Square = ({ val, cliked }) => {
+    return (
+      <button className="tiles" onClick={cliked}>
+        {val}
+      </button>
+    );
+  };
+  const [Squares, setSquares] = useState(Array(9).fill(null));
+  const [player, setplayer] = useState(true);
+  const[playerTurn, setturn] = useState('')
+  const click = (i) => {
+    if(Squares[i] || evalWinner(Squares)){
+      return
+    }
+    let next = Squares.slice();
+    if (player) {
+      next[i] = "X";
+      
+      console.log(next)
+    } else {
+      next[i] = "O";
+      console.log(next)
+      
+    }
+    setSquares(next);
+    setplayer(!player);
+  
+  };
+  useEffect(() => {
+    const winner = evalWinner(Squares);
+    let status;
+    if(winner){
+      status = 'The Winner' + winner
+      setturn(status)
+    }else{
+      status = 'Next Player' + (player ? 'X' : 'O')
+      setturn(status)
+    }
+  },[player])
+
+  const evalWinner = (Squares) => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+    for(let i = 0; i < lines.length; i++ ){
+      const[a,b,c] = lines[i];
+      
+      if(Squares[a] && Squares[a] === Squares[b] && Squares[a] === Squares[c] ){
+        console.log(Squares[a])
+        return Squares[a]
+       
+      }
+     
+
+    }
+    return null
+  }
+ 
+  return (
+    <>
+    <h1>{playerTurn}</h1>
+      <div>
+        <Square val={Squares[0]} cliked={() => click(0)} />
+        <Square val={Squares[1]} cliked={() => click(1)} />
+        <Square val={Squares[2]} cliked={() => click(2)} />
+      </div>
+      <div>
+        <Square val={Squares[3]} cliked={() => click(3)} />
+        <Square val={Squares[4]} cliked={() => click(4)} />
+        <Square val={Squares[5]} cliked={() => click(5)} />
+      </div>
+      <div>
+        <Square val={Squares[6]} cliked={() => click(6)} />
+        <Square val={Squares[7]} cliked={() => click(7)} />
+        <Square val={Squares[8]} cliked={() => click(8)} />
+      </div>
+    </>
+  );
+};
+export default TickTac;
